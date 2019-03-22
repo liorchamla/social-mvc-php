@@ -1,0 +1,44 @@
+<form action="index.php?controller=users&task=save" method="post">
+  <h1><i class="fas fa-user"></i>&nbsp; Créer un compte sur le réseau</h1>
+  <div class="form-row">
+    <label for="firstName">Prénom :</label>
+    <input type="text" name="firstName" placeholder="Votre prénom !" />
+  </div>
+  <div class="form-row">
+    <label for="lastName">Nom de famille</label>
+    <input type="text" name="lastName" placeholder="Votre nom de famille !" />
+  </div>
+  <div class="form-row">
+    <label for="description">Description :</label>
+    <textarea
+      name="description"
+      id="description"
+      placeholder="Rapide description de vous-même !"
+    ></textarea>
+  </div>
+  <div class="form-row">
+    <label for="avatar">Avatar :</label>
+    <input type="url" name="avatar" placeholder="URL de votre avatar" />
+  </div>
+
+  <h2><i class="fas fa-sign-in-alt"></i>&nbsp; Informations de connexion</h2>
+  <div class="form-row">
+    <label for="email">Adresse email</label>
+    <input type="email" name="email" placeholder="Votre adresse Email" />
+  </div>
+  <div class="form-row">
+    <label for="password">Mot de passe :</label>
+    <input type="password" name="password" placeholder="Votre mot de passe" />
+  </div>
+  <div class="form-row">
+    <label for="passwordConfirm">Confirmation du mot de passe :</label>
+    <input
+      type="password"
+      name="passwordConfirm"
+      placeholder="Confirmez votre mot de passe"
+    />
+  </div>
+  <button type="submit">
+    <i class="fas fa-check"></i>&nbsp; Je m'inscris !
+  </button>
+</form>

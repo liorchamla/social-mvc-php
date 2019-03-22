@@ -1,0 +1,56 @@
+<?php
+
+require_once 'libraries/Session.php';
+
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>3WA Social 2019 !</title>
+	<link rel="stylesheet" href="css/styles.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+<body>
+	<header>
+		<div>
+			<strong>
+				<a href="index.php">3WA Social 2019</a>
+			</strong>
+			<nav>
+				<a href="index.php">Accueil</a>
+
+				<?php if (Session::isConnected() == false): ?>
+					<a href="index.php?controller=users&task=formLogin">Connexion</a>
+					<a href="index.php?controller=users&task=register">Inscription</a>
+				<?php else: ?>
+					<a href="#">Mon compte</a>
+					<a href="index.php?controller=users&task=logout">Déconnexion</a>
+				<?php endif?>
+
+			</nav>
+		</div>
+	</header>
+	<main>
+		<?php if (Session::hasFlashes('error')): ?>
+			<div class="alerts errors">
+				<?php foreach (Session::getFlashes('error') as $message): ?>
+					<p><?=$message?></p>
+				<?php endforeach?>
+			</div>
+		<?php endif?>
+
+		<?php if (Session::hasFlashes('success')): ?>
+			<div class="alerts success">
+				<?php foreach (Session::getFlashes('success') as $message): ?>
+					<p><?=$message?></p>
+				<?php endforeach?>
+			</div>
+		<?php endif?>
+
+
+

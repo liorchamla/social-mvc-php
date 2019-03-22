@@ -1,0 +1,32 @@
+<?php if (Session::isConnected()): ?>
+    <form action="index.php?controller=status&task=save" method="POST" id="write-status">
+        <div class="form-row">
+            <textarea name="content" id="content" required placeholder="Et là ? A quoi pensez vous ? ;-)"></textarea>
+        </div>
+        <button type="submit">
+            <i class="fas fa-volume-up"></i>
+            Envoyer
+        </button>
+    </form>
+<?php endif?>
+
+<section id="status">
+    <h2>Dernièrement, sur votre réseau ...</h2>
+    <?php foreach ($status as $stat): ?>
+    <article>
+        <figure>
+            <img src="<?=$stat['avatar']?>" class="avatar" alt="Avatar de <?=$stat['firstName']?> <?=$stat['lastName']?>">
+        </figure>
+        <div class="details">
+            <strong><?=$stat['firstName']?> <?=$stat['lastName']?></strong>
+            <p><?=$stat['content']?></p>
+            <div class="metadata">
+                <small>Le <?=$stat['createdAt']?></small> |
+                <a href="index.php?controller=status&task=show&id=<?=$stat['id']?>">
+                    <i class="far fa-comments"></i> <strong><?=$stat['comments']?></strong> commentaires
+                </a>
+            </div>
+        </div>
+    </article>
+    <?php endforeach?>
+</section>

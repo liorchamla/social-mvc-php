@@ -1,0 +1,92 @@
+<section id="status">
+  <article>
+    <figure>
+      <img
+        src="<?=$status['avatar']?>"
+        class="avatar"
+        alt="Avatar de <?=$status['firstName']?> <?=$status['lastName']?>"
+      />
+    </figure>
+    <div class="details">
+      <strong
+        ><?=$status['firstName']?>
+        <?=$status['lastName']?></strong
+      >
+      <p><?=$status['content']?></p>
+      <div class="metadata">
+        <small
+          >Le
+          <?=$status['createdAt']?></small
+        >
+        |
+        <i class="far fa-comments"></i>
+        <strong><?=$status['comments']?></strong> commentaires |
+        <a href="index.php?controller=status&task=edit&id=<?=$status['id']?>">
+          <i class="fas fa-edit"></i>
+          Modifier
+        </a>
+        |
+        <a href="#">
+          <i class="fas fa-times"></i>
+          Supprimer
+        </a>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="comments">
+  <h2>
+    <?=count($comments)?>
+    commentaires :
+  </h2>
+
+  <?php foreach ($comments as $comment): ?>
+  <div class="comment">
+    <figure>
+      <img src="<?=$comment['avatar']?>" alt="" class="avatar" />
+    </figure>
+    <div class="details">
+      <h4>
+        <?=$comment['firstName']?>
+        <?=$comment['lastName']?>
+      </h4>
+      <small>
+        Le
+        <?=$comment['createdAt']?>
+      </small>
+      <blockquote>
+        <?=$comment['content']?>
+        <br /><br />
+        <a href="#">
+          <i class="fas fa-times"></i>
+          Supprimer
+        </a>
+      </blockquote>
+    </div>
+  </div>
+  <?php endforeach?>
+</section>
+
+<?php if (Session::isConnected()): ?>
+  <form action="index.php?controller=comments&task=save" method="post">
+    <h2>Vous aussi, commentez ce statut !</h2>
+    <div class="form-row">
+      <textarea
+        name="content"
+        id="content"
+        rows="3"
+        placeholder="Alors ? Quelque chose d'intéressant à dire ? ;-)"
+      ></textarea>
+    </div>
+    <button type="submit">
+      <i class="fas fa-check"></i>
+      Commenter !
+    </button>
+
+    <input type="hidden" name="status_id" value="<?=$status['id']?>" />
+  </form>
+<?php else: ?>
+  <h2>Connectez vous pour commenter !</h2>
+  <?php require_once 'templates/users/form-login.phtml'?>
+<?php endif?>
